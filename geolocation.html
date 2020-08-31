@@ -3,11 +3,11 @@
 <body>
 <p>Click the button to get your coordinates.</p>
 
-<button onclick="getLocation()">Try It</button>
+<button onclick="getLocation()">Get Location</button>
 
 <p id="location"></p>
 <script>
-const location = document.getElementById("location");
+let location = document.getElementById("location");
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -17,7 +17,7 @@ const options = {
 const success = (pos) => {
   const crd = pos.coords;
 
-  let result = 'Your current position is:' +
+  let result = 'Your current location is:' +
   `Latitude : ${crd.latitude}` +
   `Longitude: ${crd.longitude}` +
   `+/- ${crd.accuracy} meters.`;
@@ -29,7 +29,7 @@ const error = (err) => {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-function getLocation() {
+const getLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error, options);
   } else { 
