@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
-<p>Click the button to get your coordinates.</p>
-
-<button onclick="getLocation()">Get Location</button>
-
+<h1>Where am I?</h1>
+<button onclick="getLocation()">Find Out</button>
 <p id="location"></p>
 <script>
 let position = document.getElementById("location");
@@ -13,31 +11,24 @@ const options = {
   timeout: 5000,
   maximumAge: 0
 };
-
-const success = (pos) => {
-  const crd = pos.coords;
-
-  let result = 'Your current location is:' +
-  `Latitude : ${crd.latitude}` +
-  `Longitude: ${crd.longitude}` +
-  `+/- ${crd.accuracy} meters.`;
-
+const success = (position) => {
+  const location = position.coords;
+  let result = 'You are at :<br/>' +
+  `Latitude : ${location.latitude}<br/>` +
+  `Longitude: ${location.longitude}<br/>` +
+  `+/- ${location.accuracy} meters.`;
   position.innerHTML = result;
 }
-
-const error = (err) => {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
+const error = (error) => {
+  console.warn(`ERROR(${error.code}): ${error.message}`);
 }
-
 const getLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error, options);
   } else { 
-    position.innerHTML = "Geolocation is not supported by this browser.";
+    position.innerHTML = "Sorry, this browser does not support Geolocation.";
   }
 }
-
 </script>
-
 </body>
 </html>
