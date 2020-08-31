@@ -7,7 +7,7 @@
 
 <p id="location"></p>
 <script>
-let location = document.getElementById("location");
+let position = document.getElementById("location");
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -22,7 +22,7 @@ const success = (pos) => {
   `Longitude: ${crd.longitude}` +
   `+/- ${crd.accuracy} meters.`;
 
-  location.innerHTML = result;
+  position.innerHTML = result;
 }
 
 const error = (err) => {
@@ -33,7 +33,7 @@ const getLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error, options);
   } else { 
-    location.innerHTML = "Geolocation is not supported by this browser.";
+    position.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
