@@ -11,7 +11,7 @@ const options = {
   timeout: 5000,
   maximumAge: 0
 };
-const success = (position) => {
+const handleSuccess = (position) => {
   const location = position.coords;
   let result = 'You are at :<br/>' +
   `Latitude : ${location.latitude}<br/>` +
@@ -19,12 +19,12 @@ const success = (position) => {
   `+/- ${location.accuracy} meters.`;
   position.innerHTML = result;
 }
-const error = (error) => {
+const handleError = (error) => {
   console.warn(`ERROR(${error.code}): ${error.message}`);
 }
 const getLocation = () => {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error, options);
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
   } else { 
     position.innerHTML = "Sorry, this browser does not support Geolocation.";
   }
