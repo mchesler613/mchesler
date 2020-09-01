@@ -2,14 +2,15 @@
 <html>
 <body>
 <h1>Where am I?</h1>
-<button onclick="getLocation()">Find Out</button>
+<button onclick="getLocation()">Track Me</button>
 <p id="location"></p>
 <script>
 let locationId = document.getElementById('location');
+let watchId = null;
 const options = {
   enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
+  timeout: 30000, // 30 seconds
+  maximumAge: 3000
 };
 const handleSuccess = (position) => {
   const result = position.coords;
@@ -24,7 +25,7 @@ const handleError = (error) => {
 }
 const getLocation = () => {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
+    watchId = navigator.geolocation.watchPosition(handleSuccess, handleError, options);
   } else { 
     locationId.innerHTML = 'Sorry, this browser does not support Geolocation.';
   }
