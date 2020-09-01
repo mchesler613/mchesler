@@ -19,6 +19,7 @@ const handleSuccess = (position) => {
   `Longitude: ${result.longitude}<br/>` +
   `+/- ${result.accuracy} meters.`;
   locationId.innerHTML = message;
+  counter++;
 }
 const handleError = (error) => {
   // console.warn(`ERROR(${error.code}): ${error.message}`);
