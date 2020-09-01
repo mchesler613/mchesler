@@ -5,19 +5,21 @@
 window.onpopstate = function(event) {
   document.getElementById('message').innerHTML = `location: ${document.location}, state: ${JSON.stringify(event.state)}`;
 }
-
-history.pushState({page: 1}, "title 1", "?page=1")
-history.pushState({page: 2}, "title 2", "?page=2")
-history.replaceState({page: 3}, "title 3", "?page=3")
-history.back() // alerts "location: http://example.com/example.html?page=1, state: {"page":1}"
-history.back() // alerts "location: http://example.com/example.html, state: null"
-history.go(2)  // alerts "location: http://example.com/example.html?page=3, state: {"page":3}"
+// Current stack has these urls
+history.pushState({page: 1}, "Page 1", "?page=1")
+history.pushState({page: 2}, "Page 2", "?page=2")
+  
+// Replace current page with this url
+history.replaceState({page: 3}, "Page 3", "?page=3")
+  
+/*
+history.back() //  "location: http://somewebsite?page=1, state: {"page":1}"
+history.back() //  "location: http://somewebsite, state: null"
+history.go(2)  //  "location: http://somewebsite?page=3, state: {"page":3}"
+*/
 </script>
 </head>
 <body>
-<a href="./page1.html"> Page 1 </a>
-<a href="./page2.html"> Page 2 </a>
-<a href="./page3.html"> Page 3 </a>
 <div id="message"></div>
 </body>
 </html>
