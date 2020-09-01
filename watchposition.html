@@ -4,6 +4,7 @@
 <h1>Where am I?</h1>
 <button onclick="getLocation()">Track Me</button>
 <p id="location"></p>
+<p id="error" style="background: red; color: white;"></p>
 <script>
 let locationId = document.getElementById('location');
 const options = {
@@ -20,7 +21,9 @@ const handleSuccess = (position) => {
   locationId.innerHTML = message;
 }
 const handleError = (error) => {
-  console.warn(`ERROR(${error.code}): ${error.message}`);
+  // console.warn(`ERROR(${error.code}): ${error.message}`);
+  let errorId = document.getElementById('error');
+  errorId.innerHTML = `ERROR(${error.code}): ${error.message}`;
 }
 const getLocation = () => {
   if (navigator.geolocation) {
