@@ -6,15 +6,16 @@
 <p id="location"></p>
 <p id="error" style="background: red; color: white;"></p>
 <script>
+let counter = 1;
 let locationId = document.getElementById('location');
 const options = {
   enableHighAccuracy: true,
-  timeout: 30000, // 30 seconds
+  timeout: 5000, // 5 seconds
   maximumAge: 3000
 };
 const handleSuccess = (position) => {
   const result = position.coords;
-  let message = 'You are at :<br/>' +
+  let message = `Update #${counter} You are at :<br/>` +
   `Latitude : ${result.latitude}<br/>` +
   `Longitude: ${result.longitude}<br/>` +
   `+/- ${result.accuracy} meters.`;
