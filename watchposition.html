@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Where am I?</h1>
+<button onclick="getLocation()">Find Out</button>
+<p id="location"></p>
+<script>
+let locationId = document.getElementById('location');
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+const handleSuccess = (position) => {
+  const result = position.coords;
+  let message = 'You are at :<br/>' +
+  `Latitude : ${result.latitude}<br/>` +
+  `Longitude: ${result.longitude}<br/>` +
+  `+/- ${result.accuracy} meters.`;
+  locationId.innerHTML = message;
+}
+const handleError = (error) => {
+  console.warn(`ERROR(${error.code}): ${error.message}`);
+}
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
+  } else { 
+    locationId.innerHTML = 'Sorry, this browser does not support Geolocation.';
+  }
+}
+</script>
+</body>
+</html>
