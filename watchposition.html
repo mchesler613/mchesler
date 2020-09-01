@@ -6,7 +6,6 @@
 <p id="location"></p>
 <script>
 let locationId = document.getElementById('location');
-let watchId = null;
 const options = {
   enableHighAccuracy: true,
   timeout: 30000, // 30 seconds
@@ -30,6 +29,7 @@ const getLocation = () => {
     locationId.innerHTML = 'Sorry, this browser does not support Geolocation.';
   }
 }
+let watchId = navigator.geolocation.watchPosition(handleSuccess, handleError, options);
 </script>
 </body>
 </html>
