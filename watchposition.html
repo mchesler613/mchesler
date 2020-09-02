@@ -26,7 +26,12 @@ const handleError = (error) => {
   let errorId = document.getElementById('error');
   errorId.innerHTML = `ERROR(${error.code}): ${error.message}`;
 }
-let watchId = navigator.geolocation.watchPosition(handleSuccess, handleError, options);
+
+if(navigator.geolocation){ 
+  let watchId = navigator.geolocation.watchPosition(handleSuccess, handleError, options);
+} else {
+  locationId.innerHTML = ("Sorry, browser does not support geolocation!");
+}
 </script>
 </body>
 </html>
