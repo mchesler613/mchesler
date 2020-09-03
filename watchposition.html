@@ -5,7 +5,7 @@
 <p id="location"></p>
 <p id="error" style="background: red; color: white;"></p>
 <script>
-let counter = 1;
+let counter = 0;
 let locationId = document.getElementById('location');
 const options = {
   enableHighAccuracy: true,
@@ -14,12 +14,11 @@ const options = {
 };
 const handleSuccess = (position) => {
   const result = position.coords;
-  let message = `Update #${counter} You are at :<br/>` +
+  let message = `Update #${++counter} You are at :<br/>` +
   `Latitude : ${result.latitude}<br/>` +
   `Longitude: ${result.longitude}<br/>` +
   `+/- ${result.accuracy} meters.`;
   locationId.innerHTML = message;
-  counter++;
 }
 const handleError = (error) => {
   // console.warn(`ERROR(${error.code}): ${error.message}`);
